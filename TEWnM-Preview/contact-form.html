@@ -1,0 +1,28 @@
+<section id="kontaktformular" class="content-section inquiry-section" aria-labelledby="inquiry-heading">
+  <div class="inquiry-intro"><p class="eyebrow">Wir freuen uns auf Ihre Nachricht</p><h2 id="inquiry-heading">Wie können wir Sie unterstützen?</h2><p>Erzählen Sie uns von Ihrem Anliegen. Wir melden uns bei Ihnen.</p></div>
+  <form id="inquiry-form" novalidate method="post" aria-describedby="form-note preview-note">
+    <p id="form-note">Mit * markierte Felder sind Pflichtfelder. Bitte geben Sie mindestens eine Telefonnummer an.</p>
+    <p id="preview-note" class="form-preview-note">Gestaltungsvorschau: Sie können Ihre Angaben prüfen. Es werden keine Daten oder Dateien versendet.</p>
+    <div id="form-errors" class="form-error-summary" tabindex="-1" hidden><h3>Bitte prüfen Sie Ihre Angaben.</h3><ul></ul></div>
+    <fieldset id="inquiry-fields" disabled><legend class="visually-hidden">Ihre Kontaktdaten und Nachricht</legend>
+      <div class="form-grid">
+        <div class="form-field"><label for="first-name">Vorname *</label><input id="first-name" name="firstName" autocomplete="given-name" maxlength="100" required aria-describedby="first-name-error"><p id="first-name-error" class="field-error" hidden></p></div>
+        <div class="form-field"><label for="last-name">Nachname *</label><input id="last-name" name="lastName" autocomplete="family-name" maxlength="100" required aria-describedby="last-name-error"><p id="last-name-error" class="field-error" hidden></p></div>
+        <div class="form-field"><label for="birthday">Geburtstag <span>(optional)</span></label><input id="birthday" name="birthday" type="date" autocomplete="bday" aria-describedby="birthday-error"><p id="birthday-error" class="field-error" hidden></p></div>
+        <div class="form-field form-address"><div><label for="street">Straße *</label><input id="street" name="street" autocomplete="address-line1" maxlength="150" required aria-describedby="street-error"><p id="street-error" class="field-error" hidden></p></div><div><label for="house-number">Hausnr. *</label><input id="house-number" name="houseNumber" maxlength="20" required aria-describedby="house-number-error"><p id="house-number-error" class="field-error" hidden></p></div></div>
+        <div class="form-field"><label for="postal-code">Postleitzahl *</label><input id="postal-code" name="postalCode" autocomplete="postal-code" maxlength="20" required aria-describedby="postal-code-error"><p id="postal-code-error" class="field-error" hidden></p></div>
+        <div class="form-field"><label for="city">Ort *</label><input id="city" name="city" autocomplete="address-level2" maxlength="100" required aria-describedby="city-error"><p id="city-error" class="field-error" hidden></p></div>
+        <div class="form-field"><label for="email">E-Mail *</label><input id="email" name="email" type="email" autocomplete="email" maxlength="254" required aria-describedby="email-error"><p id="email-error" class="field-error" hidden></p></div>
+        <div class="form-field"><label for="email-confirm">E-Mail wiederholen *</label><input id="email-confirm" name="emailConfirm" type="email" autocomplete="off" maxlength="254" required aria-describedby="email-confirm-error"><p id="email-confirm-error" class="field-error" hidden></p></div>
+        <div class="form-field"><label for="phone">Telefon</label><input id="phone" name="phone" type="tel" autocomplete="tel" maxlength="40" aria-describedby="phone-hint phone-error"><p id="phone-hint" class="field-hint">Telefon oder Mobiltelefon erforderlich; bitte mit Vorwahl.</p><p id="phone-error" class="field-error" hidden></p></div>
+        <div class="form-field"><label for="mobile">Mobiltelefon</label><input id="mobile" name="mobile" type="tel" autocomplete="tel" maxlength="40" aria-describedby="mobile-hint mobile-error"><p id="mobile-hint" class="field-hint">Kann leer bleiben, wenn Sie eine Telefonnummer angeben.</p><p id="mobile-error" class="field-error" hidden></p></div>
+        <div class="form-field form-wide"><label for="message">Ihre Nachricht *</label><textarea id="message" name="message" rows="5" maxlength="5000" required aria-describedby="message-error"></textarea><p id="message-error" class="field-error" hidden></p></div>
+        <div class="form-field form-wide"><label for="attachment">Datei anhängen <span>(optional)</span></label><input id="attachment" name="attachment" type="file" accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png" aria-describedby="attachment-hint attachment-error"><p id="attachment-hint" class="field-hint">Eine PDF-, JPG- oder PNG-Datei, maximal 10 MB.</p><p id="attachment-error" class="field-error" hidden></p></div>
+        <div class="form-field form-wide"><div class="privacy-choice"><input id="privacy" name="privacy" type="checkbox" required aria-describedby="privacy-error"><label for="privacy">Ich habe die <a href="https://www.tewnm.de/datenschutz.html" target="_blank" rel="noopener">Datenschutzerklärung</a> gelesen und akzeptiere sie. *</label></div><p id="privacy-error" class="field-error" hidden></p></div>
+      </div>
+      <div class="form-actions"><button class="cta" type="submit">Angaben prüfen <i class="ph ph-arrow-right" aria-hidden="true"></i></button></div>
+    </fieldset>
+    <p id="form-result" class="form-result" role="status" hidden></p>
+    <noscript><p>Bitte aktivieren Sie JavaScript, um das Vorschauformular zu prüfen. Sie erreichen uns auch telefonisch unter 089 55 06 24 98.</p></noscript>
+  </form>
+</section>
