@@ -1,0 +1,8 @@
+Option 5 bird artwork: built-in image generation, style-transfer edit.
+Edit target: assets/option-1-hero.png
+Style reference: assets/option-3-tree.png
+Output: assets/option-5-bird-watercolor.png
+
+Use case: style-transfer.
+Asset type: a wide decorative website hero illustration for TEWnM Option 5, landscape approximately 2.4:1.
+Edit target: Image 1, the original bird on a leafy branch. Supporting style/color reference: Image 2, the watercolor tree illustration. Transform Image 1 into the SAME hand-painted watercolor visual language as Image 2: delicate botanical watercolor edges and paper grain, muted sage and olive leaves, slate-blue foliage shadows, pale icy blue washes, warm natural brown branches, small gentle yellow highlights. Replace the saturated photographic golden bokeh with subtle diffuse pale blue-white watercolor washes. Retain the single small songbird, left-facing pose, natural warm buff breast and gray-brown wing markings, perched on the diagonal branch on the RIGHT side around 80% across, about halfway down. Retain framing and leafy branch composition of Image 1 while translating the whole scene into watercolor rather than a photo or a filtered photo. Keep the LEFT 60% mostly open, very pale blue-white (#f7fbff), low detail and low contrast, for live navy headline text. Do not paint any text, lettering, logos, buttons or website UI. Keep right-side bird recognizable and unobscured, with enough margin from the edges for responsive cropping. Softly feather top and bottom and left into the pale paper backdrop, matching the airy tree artwork. Opaque background, not transparent. Output only the finished landscape bird illustration; do NOT include the reference tree or a full tree, mountains, buildings, people or extra birds.

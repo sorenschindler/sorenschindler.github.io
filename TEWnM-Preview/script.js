@@ -20,10 +20,66 @@ dialog.querySelector('.cta').href = contactTarget;
 dialog.querySelector('.cta').addEventListener('click', () => dialog.close());
 const menu = document.querySelector('.menu-toggle');
 const navigation = document.querySelector('#navigation');
+const siteHeader = document.querySelector('.site-header');
+const compactNavigation = window.matchMedia('(max-width: 960px)');
 let lastTrigger;
-function closeMenu() { navigation.classList.remove('is-open'); menu.setAttribute('aria-expanded','false'); menu.setAttribute('aria-label','Menü öffnen'); }
+function closeMenu(returnFocus = false) {
+  navigation.classList.remove('is-open');
+  menu.setAttribute('aria-expanded','false');
+  menu.setAttribute('aria-label','Menü öffnen');
+  if (returnFocus) menu.focus({preventScroll:true});
+}
 menu?.addEventListener('click', () => { const open = menu.getAttribute('aria-expanded') !== 'true'; navigation.classList.toggle('is-open', open); menu.setAttribute('aria-expanded', String(open)); menu.setAttribute('aria-label', open ? 'Menü schließen' : 'Menü öffnen'); });
-navigation?.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
+navigation?.querySelectorAll('a').forEach(link => link.addEventListener('click', () => closeMenu()));
+// Keep the scroll offset in sync with the real bar height, including font/zoom
+// changes. On short screens the CSS fallback leaves the header in normal flow.
+function updateHeaderMetrics() {
+  if (!siteHeader) return;
+  const height = Math.ceil(siteHeader.getBoundingClientRect().height);
+  document.documentElement.style.setProperty('--header-bar-height', height + 'px');
+  document.documentElement.style.setProperty('--sticky-header-height',
+    getComputedStyle(siteHeader).position === 'sticky' ? height + 'px' : '0px');
+}
+if (siteHeader) {
+  new ResizeObserver(updateHeaderMetrics).observe(siteHeader);
+  window.addEventListener('resize', updateHeaderMetrics);
+  updateHeaderMetrics();
+}
+compactNavigation.addEventListener('change', () => closeMenu(compactNavigation.matches && navigation.contains(document.activeElement)));
+navigation?.addEventListener('focusout', event => {
+  if (event.relatedTarget && !siteHeader.contains(event.relatedTarget)) closeMenu();
+});
+document.addEventListener('pointerdown', event => {
+  if (menu?.getAttribute('aria-expanded') === 'true' && !siteHeader.contains(event.target)) {
+    closeMenu(navigation.contains(document.activeElement));
+  }
+});
+// Browser focus scrolling can place a control behind a sticky header when
+// tabbing backwards. Correct only obscured focus; never move keyboard focus.
+document.addEventListener('focusin', event => {
+  const focused = event.target;
+  if (siteHeader?.contains(focused) || focused.closest('.skip, dialog')) return;
+  requestAnimationFrame(() => {
+    if (document.activeElement !== focused) return;
+    const offset = parseFloat(getComputedStyle(document.documentElement)
+      .getPropertyValue('--sticky-header-height')) || 0;
+    const rect = focused.getBoundingClientRect();
+    if (offset && rect.top < offset + 12) {
+      window.scrollBy({top:rect.top - offset - 16, behavior:'instant'});
+    }
+  });
+});
+// Section navigation also moves the keyboard reading point into the section.
+document.addEventListener('click', event => {
+  const link = event.target.closest('a[href]');
+  if (!link || event.defaultPrevented || event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+  const destination = new URL(link.href);
+  if (destination.origin !== location.origin || destination.pathname !== location.pathname || !destination.hash) return;
+  const target = document.getElementById(decodeURIComponent(destination.hash.slice(1)));
+  if (!target) return;
+  if (!target.matches('a[href], button, input, select, textarea, [tabindex]')) target.setAttribute('tabindex','-1');
+  requestAnimationFrame(() => target.focus({preventScroll:true}));
+});
 // Leaves reveal details in place; the navigation keeps its separate dialogs.
 const canopy = document.querySelector('.option-1 .canopy-leaves');
 if (canopy) {
@@ -121,7 +177,8 @@ document.addEventListener('pointerdown', event => { if (activeLeaf && !activeLea
 document.querySelectorAll('[data-detail]:not(.leaf-trigger)').forEach(button => button.addEventListener('click', () => {
   const content = details[button.dataset.detail];
   if (!content || !dialog) return;
-  lastTrigger = button;
+  lastTrigger = menu?.getAttribute('aria-expanded') === 'true' ? menu : button;
+  closeMenu();
   closeMenu();
   document.querySelector('#detail-title').textContent = content[0];
   document.querySelector('#detail-body').innerHTML = content[1];

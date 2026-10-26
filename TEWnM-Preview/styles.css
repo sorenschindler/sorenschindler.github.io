@@ -121,8 +121,10 @@
 @media(max-width:400px){.possibilities-leaves .leaf-content{gap:5px;padding:6px 0}.possibilities-leaves .leaf-title{font-size:22px;line-height:1.15}.possibilities-leaves .leaf-copy{font-size:16px;line-height:1.25}.possibilities-leaves .leaf-content>.ph{font-size:26px}}
 
 /* Option 2 client revision: five leaves, a readable quote and a faded tree edge. */
-.option-2 .branch-canvas{position:relative;isolation:isolate;max-width:1600px;margin-inline:auto;background:none}
-.option-2 .branch-canvas::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:url('assets/option-2-tree-square.png') right bottom/auto 100% no-repeat;-webkit-mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,.2) 15%,#000 52%);mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,.2) 15%,#000 52%)}
+.option-2 .branch-canvas{--branch-tree-height:clamp(1100px,125vw,2000px);position:relative;isolation:isolate;max-width:1600px;margin-inline:auto;background:none}
+/* The artwork has its own width-based height and top anchor. Expanding a
+   leaf changes document flow, but cannot resize or reposition the tree. */
+.option-2 .branch-canvas::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background-image:linear-gradient(to right,var(--cream) 0%,rgba(251,248,239,.85) 30%,rgba(251,248,239,.4) 55%,transparent 75%),url('assets/option-2-tree-square.png');background-position:left top,right top;background-size:100% 100%,auto var(--branch-tree-height);background-repeat:no-repeat;-webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 360px);mask-image:linear-gradient(to bottom,transparent 0,#000 360px)}
 .option-2 .branch-leaves{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));width:94%;max-width:1440px;height:auto;gap:0 2%;padding:10px 0 30px}
 .option-2 .branch-leaves>.leaf{position:relative;inset:auto;width:100%;min-width:0;aspect-ratio:1464/1074;margin:0}
 .option-2 .branch-leaves>.leaf-costs{aspect-ratio:1575/999;align-self:center}
@@ -131,20 +133,25 @@
 .option-2 .branch-leaves .section-leaf .leaf-title{font-size:clamp(23px,2.2vw,31px)}
 .option-2 .branch-leaves .section-leaf .leaf-copy{font-size:clamp(17px,1.6vw,23px);max-width:320px}
 .option-2 .branch-leaves .leaf-partners-link .leaf-title{overflow-wrap:anywhere}
+/* Only the artwork is mirrored; labels and interaction panels stay upright.
+   Sage stems already point right, while the cream asset points left. */
+.option-2 .branch-leaves>.leaf>img{transform:none}
+.option-2 .branch-leaves>.leaf-costs>img{transform:scaleX(-1)}
 .branch-quote{align-self:end;justify-self:end;width:90%;max-width:490px;margin:0 4% 25px 0;padding:24px;background:linear-gradient(120deg,#fbf8efee,#fbf8efca);border-left:2px solid var(--gold);border-radius:0 12px 12px 0;color:var(--ink)}
 .branch-quote blockquote{margin:0}.branch-quote p{font:500 clamp(18px,1.6vw,23px)/1.55 var(--serif);margin:0 0 16px}.branch-quote figcaption{font-size:16px;font-weight:500}
 @media(min-width:1500px){.option-2 .branch-hero{height:410px;padding-top:68px}.option-2 .branch-leaves{height:auto}}
-@media(max-width:960px){.option-2 .branch-canvas::before{background-size:auto 1500px;background-position:right top;-webkit-mask-image:linear-gradient(to right,transparent,#000 70%);mask-image:linear-gradient(to right,transparent,#000 70%)}.option-2 .branch-leaves{grid-template-columns:minmax(0,1fr);width:100%;padding:0 8px 24px}.option-2 .branch-leaves>.leaf{margin-inline:auto;max-width:480px}.option-2 .branch-leaves>.leaf-item,.option-2 .branch-leaves>.leaf-costs{aspect-ratio:auto}.option-2 .branch-leaves .section-leaf .leaf-content{width:70%;gap:8px}.option-2 .branch-leaves .section-leaf .leaf-title{font-size:24px}.option-2 .branch-leaves .section-leaf .leaf-copy{font-size:18px}.branch-quote{justify-self:center;width:90%;max-width:480px;margin:16px auto 5px;padding:20px}.branch-quote p{font-size:19px}.option-2 .branch-leaves .leaf-partners-link .leaf-title{font-size:clamp(20px,5.5vw,24px)}}
+@media(max-width:960px){.option-2 .branch-leaves{grid-template-columns:minmax(0,1fr);width:100%;padding:0 8px 24px}.option-2 .branch-leaves>.leaf{margin-inline:auto;max-width:480px}.option-2 .branch-leaves>.leaf-item,.option-2 .branch-leaves>.leaf-costs{aspect-ratio:auto}.option-2 .branch-leaves .section-leaf .leaf-content{width:70%;gap:8px}.option-2 .branch-leaves .section-leaf .leaf-title{font-size:24px}.option-2 .branch-leaves .section-leaf .leaf-copy{font-size:18px}.branch-quote{justify-self:center;width:90%;max-width:480px;margin:16px auto 5px;padding:20px}.branch-quote p{font-size:19px}.option-2 .branch-leaves .leaf-partners-link .leaf-title{font-size:clamp(20px,5.5vw,24px)}}
 @media(max-width:960px){.option-2 .branch-leaves .section-leaf .leaf-content{gap:5px;padding:6px 0}.option-2 .branch-leaves .section-leaf .leaf-copy{font-size:17px;line-height:1.2}.option-2 .branch-leaves .section-leaf .leaf-content>.ph{font-size:30px}.option-2 .branch-leaves .section-leaf .more{font-size:16px}}
-@media(min-width:961px){.option-2 .branch-canvas::before{-webkit-mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,.15) 30%,rgba(0,0,0,.6) 55%,#000 75%);mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,.15) 30%,rgba(0,0,0,.6) 55%,#000 75%)}}
 
-/* On smaller screens, the tree belongs to the complete leaf section, below
-   the hero. Its height follows the content, including expanded leaf details. */
+
+/* The single-column layout needs taller artwork, still independent of
+   expanded details. The same top fade applies at every screen size. */
 @media(max-width:960px){
-  .option-2 .branch-canvas::before{display:none}
-  .option-2 .branch-hero{background:var(--cream)}
+  .option-2 .branch-canvas{--branch-tree-height:clamp(1900px,calc(150vw + 1400px),2450px)}
+  .option-2 .branch-canvas::before{background-image:linear-gradient(to right,var(--cream),transparent 85%),url('assets/option-2-tree-square.png')}
+  .option-2 .branch-hero{background:transparent}
   .option-2 .branch-leaves{position:relative;isolation:isolate}
-  .option-2 .branch-leaves::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:url('assets/option-2-tree-square.png') 70% center/cover no-repeat;-webkit-mask-image:linear-gradient(to right,rgba(0,0,0,.55),#000 65%);mask-image:linear-gradient(to right,rgba(0,0,0,.55),#000 65%)}
+  .option-2 .branch-leaves::before{display:none}
 }
 
 /* Shared information pages retain the palette, typography and artwork of each option. */
@@ -180,3 +187,74 @@
 @media(max-width:960px){.costs-heading{grid-template-columns:minmax(0,1fr) minmax(200px,.7fr);gap:25px}.costs-heading h1{font-size:40px}.costs-heading .document-intro{font-size:20px}.costs-art,.costs-design-2 .costs-art{min-height:330px}.costs-art span{font-size:20px;padding:12px}.costs-layout{grid-template-columns:minmax(0,1fr);gap:35px}.costs-overview{position:static}.costs-overview h2 br{display:none}.costs-overview a{max-width:100%}.costs-contact{padding:30px;gap:25px}.costs-contact h2{font-size:36px}}
 @media(max-width:640px){.costs-heading{grid-template-columns:minmax(0,1fr);gap:28px;margin-bottom:35px}.costs-heading h1{font-size:37px}.costs-art,.costs-design-2 .costs-art{min-height:230px}.costs-design-3 .costs-art{min-height:280px}.costs-art span{font-size:20px}.costs-heading .text-link{font-size:17px}.costs-topic{grid-template-columns:30px minmax(0,1fr);gap:12px}.costs-topic h2{font-size:28px}.costs-topic p:not(.eyebrow){font-size:18px}.costs-rates{font-size:16px}.costs-rates dd{font-size:26px}.costs-design-3 .costs-topic{padding:20px 16px;gap:10px}.costs-contact{grid-template-columns:minmax(0,1fr);padding:28px 22px;gap:15px}.costs-contact p:not(.eyebrow){font-size:18px}.costs-contact .cta{font-size:18px;padding:13px 17px;gap:15px}.costs-context{padding:18px;gap:12px;font-size:16px}.costs-contact-actions{min-width:0}.costs-overview h2{font-size:27px}}
 .costs-overview a span { flex:0 0 1.5em; white-space:nowrap; }
+/* Accessible persistent navigation: stable bar, no scroll-triggered animation. */
+:root{--header-bar-height:80px;--sticky-header-height:80px}
+html{scroll-padding-top:calc(var(--sticky-header-height) + 16px)}
+body[class*="option-"]>.site-header{position:sticky;top:0;z-index:100;width:100%;max-width:none;margin:0;padding:8px max(5%,calc((100% - 1320px)/2));background:var(--cream);border-bottom:1px solid #a5b39766;isolation:isolate}
+body[class*="option-"]>.site-header .brand{width:clamp(220px,23vw,300px)}
+.skip{position:fixed;top:8px;left:12px;z-index:1000;transform:translateY(calc(-100% - 24px));padding:12px 18px;border:2px solid var(--ink);color:var(--ink);background:var(--cream)}
+.skip:focus{top:8px;transform:none}
+main:focus,main [tabindex="-1"]:focus{outline-offset:6px}
+.document-toc{top:calc(var(--sticky-header-height) + 24px)}
+.costs-overview{top:calc(var(--sticky-header-height) + 24px)}
+@media(max-width:960px){
+ body[class*="option-"]>.site-header{padding:8px 4%;gap:12px}
+ body[class*="option-"]>.site-header .brand{width:clamp(180px,60vw,240px);min-width:0}
+ .site-header .menu-toggle{flex:0 0 auto;min-width:44px;min-height:44px}
+ .site-header nav{left:0;width:100%;top:100%;max-height:calc(100vh - var(--header-bar-height) - 12px);max-height:calc(100dvh - var(--header-bar-height) - 12px);overflow-y:auto;overscroll-behavior:contain;padding:20px max(6%,calc((100% - 600px)/2));scroll-padding-block:12px;background:var(--cream);border-bottom:1px solid #a5b39766}
+ .site-header nav.is-open{gap:12px}
+ .site-header nav a,.site-header nav button{padding:6px 4px;min-height:40px}
+ .document-toc,.costs-overview{position:static}
+}
+/* Landscape phones and heavily zoomed views keep the reading area available. */
+@media(max-height:480px){
+ :root{--sticky-header-height:0px}
+ body[class*="option-"]>.site-header{position:relative;top:auto}
+ .document-toc,.costs-overview{position:static}
+}
+/* Option 4: Option 2's layout with a restrained desktop display scale.
+   Reading copy, form fields and navigation intentionally retain their sizes. */
+@media(min-width:961px){
+ .option-4 .branch-hero h1{font-size:clamp(39px,4.7vw,66px)}
+ .option-4 .branch-hero p{font-size:clamp(20px,1.8vw,24px)}
+ .option-4 .branch-leaves .leaf-title,.option-4 .branch-leaves .section-leaf .leaf-title{font-size:clamp(23px,1.9vw,27px)}
+ .option-4 .branch-leaves .leaf-copy,.option-4 .branch-leaves .section-leaf .leaf-copy{font-size:clamp(18px,1.4vw,20px);line-height:1.35}
+ .option-4 .section-heading h2,.option-4 .team-section h2,.option-4 .inquiry-intro h2{font-size:clamp(32px,3vw,42px)}
+ .option-4 .about-copy h3{font-size:27px}
+ .option-4 .areas h2{font-size:clamp(27px,2.3vw,34px)}
+ .option-4 .branch-contact h2{font-size:clamp(28px,2.6vw,40px)}
+ .option-4 .document-heading h1,.option-4 .costs-heading h1{font-size:clamp(35px,3.6vw,50px)}
+}
+/* Keep the two related designs adjacent in the 1, 2, 4, 3 reading order. */
+@media(min-width:1100px){.choices{grid-template-columns:repeat(4,minmax(0,1fr))}.choices>a>img{height:280px}.choices>a>div{padding:20px}.choices h2{font-size:25px}.page-preview-groups{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media(min-width:641px) and (max-width:1099px){.choices,.page-preview-groups{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.choices>a>img{object-fit:contain;object-position:center;background:#f4f2e9}
+/* Option 5: Option 1's five-leaf composition in Option 3's blue/yellow palette. */
+.option-5{--ink:#153575;--body:#263c5e;--cream:#f7fbff;--sage:#e8f2fb;--gold:#ffd12b}
+.option-5 .canopy-scene{--canopy-tree-height:clamp(950px,94vw,1320px);position:relative;isolation:isolate;max-width:1600px;margin-inline:auto}
+.option-5 .canopy-scene::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background-image:linear-gradient(to bottom,var(--cream),transparent 160px,transparent calc(var(--canopy-tree-height) - 220px),var(--cream) var(--canopy-tree-height)),linear-gradient(to right,var(--cream) 12%,transparent 25%,transparent 75%,var(--cream) 88%),url('assets/option-3-tree.png');background-size:100% var(--canopy-tree-height),100% var(--canopy-tree-height),auto var(--canopy-tree-height);background-position:center top;background-repeat:no-repeat}
+.option-5 .canopy-leaves{background:none}
+.option-5 .canopy-leaves .leaf-home>img,.option-5 .canopy-leaves .leaf-work>img{filter:hue-rotate(120deg) saturate(.7) brightness(1.02) drop-shadow(0 4px 4px #66773510)}
+.option-5 .eyebrow{color:#536b88}
+.option-5 .partners-section{background:#edf4fa}
+.option-5 .inquiry-section form{background:#edf4fa;border-color:#ccdbe9}
+.option-5 .form-field input:not([type=checkbox]),.option-5 .form-field textarea{color:var(--ink);border-color:#8398ad}
+.option-5 .form-field input:focus-visible,.option-5 .form-field textarea:focus-visible{outline-color:var(--ink)}
+.option-5 .field-hint{color:var(--body)}
+.option-5 .form-result{border-color:var(--ink)}
+.option-5 .document-heading::after,.option-5 .feature-art{background-image:url('assets/option-3-tree.png')}
+.option-5 .costs-art{background-image:linear-gradient(to bottom,rgba(247,251,255,.12),transparent 70%,var(--cream)),url('assets/option-3-tree.png');background-position:center;background-size:cover}
+@media(max-width:960px){.option-5 .canopy-scene{--canopy-tree-height:clamp(1400px,calc(425px + 300vw),2000px)}}
+/* Five cards: a wrapped, centred grid keeps each preview readable. */
+@media(min-width:1100px){.choices{grid-template-columns:repeat(6,minmax(0,1fr))}.choices>a{grid-column:span 2}.choices>a:nth-last-child(2){grid-column:2/span 2}.choices>a:last-child{grid-column:4/span 2}.page-preview-groups{grid-template-columns:repeat(5,minmax(0,1fr))}}
+.option-5 .canopy-hero{position:relative;background:none;isolation:isolate}
+/* Watercolor bird retains the original composition and matches the tree. */
+.option-5 .canopy-hero::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background-image:linear-gradient(to right,rgba(247,251,255,.48),rgba(247,251,255,.06) 72%),url('assets/option-5-bird-watercolor.png');background-position:center;background-size:cover;background-repeat:no-repeat;-webkit-mask-image:linear-gradient(to bottom,#000 82%,transparent);mask-image:linear-gradient(to bottom,#000 82%,transparent)}
+.option-5 .intro{padding-bottom:24px;background:none}
+.option-5 .intro>p{width:fit-content;max-width:100%;margin:0 auto;padding:18px 24px;background:rgba(247,251,255,.96);border:1px solid #d5e2ef;border-radius:14px;color:var(--body);line-height:1.55}
+@media(max-width:640px){.option-5 .intro>p{padding:16px 18px;border-radius:12px}}
+/* On compact screens, give the bird a clear space below the hero copy. */
+@media(max-width:960px){.option-5 .canopy-hero{background:none;min-height:0;padding-bottom:250px}.option-5 .canopy-hero::before{background-image:linear-gradient(to bottom,var(--cream),var(--cream) calc(100% - 300px),transparent calc(100% - 210px)),url('assets/option-5-bird-watercolor.png');background-position:center,right bottom;background-size:100% 100%,auto 320px}}
+/* Pair each original with its alternate on the selection page. */
+@media(min-width:1100px){.choices{grid-template-columns:repeat(4,minmax(0,1fr))}.choices>a{grid-column:span 2}.choices>a:nth-last-child(2){grid-column:auto/span 2}.choices>a:last-child{grid-column:2/span 2}}
+@media(min-width:600px) and (max-width:960px){.option-5 .canopy-hero::before{background-size:100% 100%,100% auto}}
