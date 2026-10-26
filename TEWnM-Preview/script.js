@@ -12,7 +12,8 @@ const details = {
   login: ['Mein TEWnM', '<p>Der persönliche Bereich ist in diesem Gestaltungsvorschlag noch nicht freigeschaltet.</p><p>Wenn Sie bereits begleitet werden oder Fragen zum Angebot haben, erreichen Sie uns telefonisch unter <a href="tel:+498955062498">089 55 06 24 98</a>.</p>']
 };
 const dialog = document.querySelector('#details');
-const contactTarget = document.body.classList.contains('option-1') ? '#kontaktformular' : 'mailto:anfrage@tewnm.de';
+details.connections = ['Beziehungen & Teilhabe', details.relationships[1] + details.participation[1]];
+const contactTarget = document.querySelector('#kontaktformular') ? '#kontaktformular' : (document.body.dataset.home || 'option-1.html') + '#kontaktformular';
 dialog.querySelector('.cta').href = contactTarget;
 dialog.querySelector('.cta').addEventListener('click', () => dialog.close());
 const menu = document.querySelector('.menu-toggle');

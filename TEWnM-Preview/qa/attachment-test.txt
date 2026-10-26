@@ -1,0 +1,1 @@
+Local validation fixture, no personal data.
