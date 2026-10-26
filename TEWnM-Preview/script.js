@@ -14,6 +14,8 @@ const details = {
 const dialog = document.querySelector('#details');
 details.connections = ['Beziehungen & Teilhabe', details.relationships[1] + details.participation[1]];
 const contactTarget = document.querySelector('#kontaktformular') ? '#kontaktformular' : (document.body.dataset.home || 'option-1.html') + '#kontaktformular';
+const costsPage = (document.body.dataset.home || 'option-1.html').replace('.html', '-kosten.html');
+details.costs[1] += '<p><a class="text-link" href="' + costsPage + '">Alle Informationen zu den Kosten <i class="ph ph-arrow-right" aria-hidden="true"></i></a></p>';
 dialog.querySelector('.cta').href = contactTarget;
 dialog.querySelector('.cta').addEventListener('click', () => dialog.close());
 const menu = document.querySelector('.menu-toggle');
